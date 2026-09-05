@@ -1,25 +1,20 @@
-﻿import { App, ItemView, Plugin, WorkspaceLeaf, addIcon } from 'obsidian';
+import { App, ItemView, Plugin, WorkspaceLeaf, addIcon } from 'obsidian';
 import React from 'react';
 import { createRoot, Root } from 'react-dom/client';
 import { GraphApp } from './components/GraphApp';
 
 export const VIEW_TYPE_WORKOS_GRAPH = 'workos-knowledge-graph-view';
 
-// SVG Icon for Ribbon: Modern Orbit / Network Graph Icon
+// SVG Icon for Ribbon & Tabs: Clean Constellation Network Icon (No X-collision)
 export const WORKOS_GRAPH_ICON_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <circle cx="12" cy="12" r="3" fill="currentColor" fill-opacity="0.2"/>
-  <circle cx="19" cy="5" r="2"/>
-  <circle cx="5" cy="19" r="2"/>
-  <circle cx="5" cy="5" r="2"/>
-  <circle cx="19" cy="19" r="2"/>
-  <path d="M12 9V5"/>
-  <path d="M12 15v4"/>
-  <path d="M9 12H5"/>
-  <path d="M15 12h4"/>
-  <path d="M14.1 9.9l3.5-3.5"/>
-  <path d="M9.9 14.1l-3.5 3.5"/>
-  <path d="M9.9 9.9L6.4 6.4"/>
-  <path d="M14.1 14.1l3.5 3.5"/>
+  <circle cx="12" cy="12" r="2.5" fill="currentColor" fill-opacity="0.2"/>
+  <circle cx="18" cy="6" r="2"/>
+  <circle cx="5" cy="8" r="2"/>
+  <circle cx="15" cy="19" r="2"/>
+  <line x1="12" y1="12" x2="18" y2="6"/>
+  <line x1="12" y1="12" x2="5" y2="8"/>
+  <line x1="12" y1="12" x2="15" y2="19"/>
+  <line x1="5" y1="8" x2="15" y2="19" stroke-dasharray="2 2" stroke-opacity="0.6"/>
 </svg>`;
 
 export class WorkOSKnowledgeGraphView extends ItemView {

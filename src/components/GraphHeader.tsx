@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { ViewMode, GraphFilterConfig } from '../types';
 import { Network, Box, GitFork, Search, SlidersHorizontal, RefreshCw, X } from 'lucide-react';
 
@@ -32,7 +32,7 @@ export const GraphHeader: React.FC<GraphHeaderProps> = ({
         
         {/* Brand / Title */}
         <div className="flex items-center gap-2 pl-3 pr-2 py-1 text-neutral-300 font-medium">
-          <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-purple-600 to-cyan-500 flex items-center justify-center text-white shadow-sm">
+          <div className="w-5 h-5 rounded-full bg-[#10a37f] flex items-center justify-center text-white shadow-xs">
             <Network className="w-3 h-3" />
           </div>
           <span className="hidden sm:inline tracking-tight font-semibold text-neutral-100">WorkOS Graph</span>
@@ -67,7 +67,7 @@ export const GraphHeader: React.FC<GraphHeaderProps> = ({
             }`}
             title="3D WebGL Force Space"
           >
-            <Box className="w-3.5 h-3.5 text-cyan-400" />
+            <Box className="w-3.5 h-3.5 text-neutral-300" />
             <span>3D WebGL</span>
           </button>
 
@@ -80,7 +80,7 @@ export const GraphHeader: React.FC<GraphHeaderProps> = ({
             }`}
             title="Hierarchical Workstream Mindmap"
           >
-            <GitFork className="w-3.5 h-3.5 text-purple-400" />
+            <GitFork className="w-3.5 h-3.5 text-emerald-400" />
             <span>Mindmap</span>
           </button>
         </div>
@@ -95,7 +95,7 @@ export const GraphHeader: React.FC<GraphHeaderProps> = ({
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Knoten suchen..."
-            className="w-32 sm:w-44 bg-black/40 border border-white/5 rounded-full pl-8 pr-7 py-1 text-xs text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/30 transition-all"
+            className="w-32 sm:w-44 bg-black/40 border border-white/5 rounded-full pl-8 pr-7 py-1 text-xs text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-[#10a37f]/60 focus:ring-1 focus:ring-[#10a37f]/40 transition-all"
           />
           {searchQuery && (
             <button
