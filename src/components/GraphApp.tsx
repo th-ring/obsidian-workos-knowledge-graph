@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { App } from 'obsidian';
 import { GraphData, GraphNode, ViewMode, GraphFilterConfig } from '../types';
 import { parseGraphData } from '../parser';
@@ -53,11 +53,20 @@ export const GraphApp: React.FC<GraphAppProps> = ({ app }) => {
     }
   }, [app, filterConfig]);
 
+  const loadDataRef = React.useRef(loadData);
+  loadDataRef.current = loadData;
+
   useEffect(() => {
     loadData();
+  }, [loadData]);
 
+  useEffect(() => {
+    let timer: number | null = null;
     const onVaultChange = () => {
-      loadData();
+      if (timer !== null) window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        loadDataRef.current();
+      }, 250);
     };
 
     const modifyEvent = app.vault.on('modify', onVaultChange);
@@ -65,11 +74,12 @@ export const GraphApp: React.FC<GraphAppProps> = ({ app }) => {
     const createEvent = app.vault.on('create', onVaultChange);
 
     return () => {
+      if (timer !== null) window.clearTimeout(timer);
       app.vault.offref(modifyEvent);
       app.vault.offref(deleteEvent);
       app.vault.offref(createEvent);
     };
-  }, [app, loadData]);
+  }, [app]);
 
   // Extract unique workstream names for settings filter
   const availableWorkstreams = useMemo(() => {

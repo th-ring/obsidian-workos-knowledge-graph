@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "obsidian-workos-knowledge-graph",
   "version": "1.0.0",
   "description": "Interactive 2D/3D Force Graph & Workstream Mindmap with OpenAI Minimalist UI for Obsidian WorkOS.",
@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node esbuild.config.mjs dev",
     "build": "node esbuild.config.mjs",
-    "test": "node -e \"console.log('Knowledge Graph build verification passed')\""
+    "typecheck": "tsc --noEmit",
+    "test": "npm run typecheck && node -e \"console.log('Knowledge Graph build verification passed')\""
   },
   "keywords": [
     "obsidian",

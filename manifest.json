@@ -1,0 +1,9 @@
+﻿{
+  "id": "workos-knowledge-graph",
+  "name": "WorkOS Knowledge Graph",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "Interactive 2D/3D Force Graph & Workstream Mindmap with OpenAI Minimalist UI for Obsidian WorkOS.",
+  "author": "Obsidian WorkOS Team",
+  "isDesktopOnly": false
+}
