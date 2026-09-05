@@ -5,17 +5,17 @@ import { GraphApp } from './components/GraphApp';
 
 export const VIEW_TYPE_WORKOS_GRAPH = 'workos-knowledge-graph-view';
 
-// SVG Icon for Ribbon & Tabs: Clean Constellation Network Icon (No X-collision)
-export const WORKOS_GRAPH_ICON_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <circle cx="12" cy="12" r="2.5" fill="currentColor" fill-opacity="0.2"/>
-  <circle cx="18" cy="6" r="2"/>
-  <circle cx="5" cy="8" r="2"/>
-  <circle cx="15" cy="19" r="2"/>
-  <line x1="12" y1="12" x2="18" y2="6"/>
-  <line x1="12" y1="12" x2="5" y2="8"/>
-  <line x1="12" y1="12" x2="15" y2="19"/>
-  <line x1="5" y1="8" x2="15" y2="19" stroke-dasharray="2 2" stroke-opacity="0.6"/>
-</svg>`;
+// SVG Inner Content for Obsidian's addIcon (Obsidian natively wraps in <svg viewBox="0 0 100 100">)
+export const WORKOS_GRAPH_ICON_SVG = `
+<circle cx="50" cy="50" r="12" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="6"/>
+<circle cx="76" cy="24" r="9" fill="currentColor" stroke="currentColor" stroke-width="6"/>
+<circle cx="22" cy="34" r="9" fill="currentColor" stroke="currentColor" stroke-width="6"/>
+<circle cx="64" cy="78" r="9" fill="currentColor" stroke="currentColor" stroke-width="6"/>
+<line x1="50" y1="50" x2="76" y2="24" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+<line x1="50" y1="50" x2="22" y2="34" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+<line x1="50" y1="50" x2="64" y2="78" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+<line x1="22" y1="34" x2="64" y2="78" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-dasharray="8 8" stroke-opacity="0.6"/>
+`.trim();
 
 export class WorkOSKnowledgeGraphView extends ItemView {
   private root: Root | null = null;
@@ -64,8 +64,12 @@ export default class WorkOSKnowledgeGraphPlugin extends Plugin {
   async onload(): Promise<void> {
     console.log('Loading Obsidian WorkOS Knowledge Graph Plugin...');
 
-    // Register custom vector icon
-    addIcon('workos-graph-logo', WORKOS_GRAPH_ICON_SVG);
+    // Register custom vector icon safely
+    try {
+      addIcon('workos-graph-logo', WORKOS_GRAPH_ICON_SVG);
+    } catch (err) {
+      console.warn('Could not register custom icon workos-graph-logo:', err);
+    }
 
     // Register custom ItemView
     this.registerView(
